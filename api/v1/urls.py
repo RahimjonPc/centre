@@ -24,5 +24,5 @@ urlpatterns = [
     path('student/accaunt/<int:pk>', StudentAccountView.as_view(), name='student_accaunt'),
     path('mark/detail/<int:pk>', MarkDetailView.as_view(), name='mark_detail'),
     path('mark/list/', MarksListView.as_view(), name='mark_list'),
-    path('event_detail/<int:pk>', EventsDetailView.as_view(), name='event_detail'),
+    path('event/detail/<int:pk>', EventsDetailView.as_view(), name='event_detail'),
 ]
