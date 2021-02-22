@@ -2,6 +2,9 @@ from rest_framework import serializers
 from users.models import LeaderProfile, Teacher, Student, StudentGroup
 from django.contrib.auth.models import User
 
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+
 
 class LeaderSerializer(serializers.ModelSerializer):
 
@@ -196,3 +199,25 @@ class StudentGroupCreateSerializer(serializers.ModelSerializer):
         response = super().to_representation(value)
         response['Student'] = StudentListSerializer(value.students_in_the_group, many=True).data
         return response
+
+
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self, attr):
+        data = super().validate(attr)
+        token = self.get_token(self.user)
+        data['user'] = str(self.user)
+        return data
+
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        teachers = Teacher.objects.filter(user__id=user.id)
+        token = super().get_token(user)
+        if not teachers:
+            token['access level'] = "0"
+        else:
+            token['access level'] = "teacher"  
+        token['username'] = user.username
+        return token

@@ -1,5 +1,5 @@
 from django.urls import path
-from .users.views import LeaderView, TeachersListView, StudentListView, TeacherAccountView, StudentAccountView, TeacherCreateView, TeacherPasswordUpdateView, StudentCreateView, StudentUpdateView, StudentGroupListView, StudentGroupCreateView
+from .users.views import LeaderView, TeachersListView, StudentListView, TeacherAccountView, StudentAccountView, TeacherCreateView, TeacherPasswordUpdateView, StudentCreateView, StudentUpdateView, StudentGroupListView, StudentGroupCreateView, LoginView, MyTokenObtainPairView
 from .events.views import EventsListView, EventsDetailView
 from .cources.views import CoursesListView, CoursesDetail
 from .marks.views import MarkDetailView, MarksListView
@@ -25,4 +25,6 @@ urlpatterns = [
     path('mark/detail/<int:pk>', MarkDetailView.as_view(), name='mark_detail'),
     path('mark/list/', MarksListView.as_view(), name='mark_list'),
     path('event/detail/<int:pk>', EventsDetailView.as_view(), name='event_detail'),
+    path('login/', LoginView.as_view(), name='custom_login'),
+    path('customjwt/', MyTokenObtainPairView.as_view(), name='customjwt')
 ]

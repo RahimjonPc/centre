@@ -9,8 +9,12 @@ from rest_framework.permissions import BasePermission, IsAuthenticated, SAFE_MET
 from users.models import LeaderProfile, Teacher, Student, StudentGroup
 from events.models import Events
 from cources.models import Courses
-from .serializers import LeaderSerializer, TeacherListSerializer, StudentListSerializer, TeacherCreateSerializer, StudentCreateSerializer, StudentGroupListSerializer, StudentGroupCreateSerializer
+from .serializers import LeaderSerializer, TeacherListSerializer, StudentListSerializer, TeacherCreateSerializer, StudentCreateSerializer, StudentGroupListSerializer, StudentGroupCreateSerializer, MyTokenObtainPairSerializer
 from .permissions import StudentUpdatePermission, TeacherUpdatePermissionClass, TeacherListPermission
+
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+
 
 class LeaderView(generics.ListAPIView):
     queryset = LeaderProfile
@@ -22,6 +26,7 @@ class TeachersListView(generics.ListAPIView):
     queryset = Teacher.objects.all()
     serializer_class = TeacherListSerializer
     permission_classes = [TeacherListPermission, IsAuthenticated]
+
 
 
 
@@ -82,3 +87,12 @@ class StudentGroupCreateView(generics.CreateAPIView):
     queryset = StudentGroup.objects.all()
     serializer_class = StudentGroupCreateSerializer
     permission_classes = [IsAuthenticated]
+
+
+
+class LoginView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
+
+
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
