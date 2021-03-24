@@ -11,7 +11,7 @@
 ## Request for creating teacher:  
 
     method: POST
-    url: http://127.0.0.1:8000/api/v1/users/teacher/create/
+    url: http://127.0.0.1:8000/api/v1/user/teacher/create/
     request:
     ```json
         {
@@ -29,7 +29,7 @@
 ## Request for teachers list:  
 
     method: GET
-    url: http://127.0.0.1:8000/api/v1/users/teacher/list/
+    url: http://127.0.0.1:8000/api/v1/user/teacher/list/
     request::
     ```json
         {
@@ -45,7 +45,7 @@
 ## Request for updating teacher:  
 
     method: PATCH
-    url: http://127.0.0.1:8000/api/v1/users/teacher/update/<:id>
+    url: http://127.0.0.1:8000/api/v1/user/teacher/update/<:id>
     request:
     ```json
         {
@@ -64,7 +64,7 @@
 ## Request for creating student:  
 
     method: POST
-    url: http://127.0.0.1:8000/api/v1/users/student/create/
+    url: http://127.0.0.1:8000/api/v1/user/student/create/
     request:
     ```json
         {
@@ -81,7 +81,7 @@
 ## Request for students list:  
 
     method: GET
-    url: http://127.0.0.1:8000/api/v1/users/student/list/
+    url: http://127.0.0.1:8000/api/v1/user/student/list/
     ```json
         {
         "id": 1,
@@ -94,7 +94,7 @@
 ## Request for updating student:  
 
     method: PATCH
-    url: http://127.0.0.1:8000/api/v1/users/student/update/<:id>
+    url: http://127.0.0.1:8000/api/v1/user/student/update/<:id>
     ```json
         {
             "username": "Rahimjon_B",
