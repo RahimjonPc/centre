@@ -1,0 +1,14 @@
+.form-container {
+    max-width: 500px;
+    margin: 100px auto;
+}
+.edit {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+.delete {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+}

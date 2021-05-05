@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import generics, permissions
 from rest_framework import settings
-from rest_framework.permissions import BasePermission, IsAuthenticated, SAFE_METHODS
+from rest_framework.permissions import BasePermission, IsAuthenticated, SAFE_METHODS, AllowAny
 
 
 from users.models import LeaderProfile, Teacher, Student, StudentGroup
@@ -29,17 +29,23 @@ class TeachersListView(generics.ListAPIView):
 
 
 
-
-class TeacherCreateView(generics.RetrieveUpdateDestroyAPIView):
+class TeacherCreateView(generics.CreateAPIView):
+    permission_class = [AllowAny]
     queryset = Teacher.objects.all()
     serializer_class = TeacherCreateSerializer
-    permission_class = [IsAuthenticated]
+    
 
 
 class TeacherPasswordUpdateView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Teacher.objects.all()
     serializer_class = TeacherCreateSerializer
     permission_classes = [TeacherUpdatePermissionClass, IsAuthenticated]
+
+
+class TeacherUpdateView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Teacher.objects.all()
+    serializer_class = TeacherCreateSerializer
+    permission_classes = [AllowAny]
 
 
 class TeacherAccountView(generics.RetrieveUpdateDestroyAPIView):
@@ -55,13 +61,13 @@ class StudentListView(generics.ListAPIView):
 class StudentCreateView(generics.CreateAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentCreateSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
 
 class StudentUpdateView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentCreateSerializer
-    permission_classes = [StudentUpdatePermission, IsAuthenticated]
+    permission_classes = [AllowAny]
 
 
 class StudentAccountView(generics.RetrieveUpdateDestroyAPIView):

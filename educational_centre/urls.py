@@ -15,10 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,12 +29,13 @@ urlpatterns = [
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
     path('auth/', include('djoser.urls.jwt')),
-    path('users/', include('users.urls')),
-    path('cources', include('cources.urls')),
-    path('events', include('events.urls')),
-    path('marks', include('marks.urls')),
+    path('', views.AuthericationView.as_view(), name='home'),
+    path('user', include('users.urls')),
+    path('cource', include('cources.urls')),
+    path('event', include('events.urls')),
+    path('mark', include('marks.urls')),
     path('api/', include('api.urls')),
     path('api/token/', TokenObtainPairView.as_view()),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

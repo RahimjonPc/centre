@@ -5,4 +5,4 @@ class EventsListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Events
-        fields = ("id", "day", "start", "finish", "teacher", "student_group", "cource",)
+        fields = ("day", "start", "finish", "teacher", "student_group", "cource",)

@@ -1,0 +1,10 @@
+.edit {
+    position: absolute;
+    right: 5px;
+    top: 20px;
+}
+.delete {
+    position: absolute;
+    right: 5px;
+    bottom: 20px;
+}
