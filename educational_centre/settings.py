@@ -187,4 +187,6 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
 APPEND_SLASH = False
